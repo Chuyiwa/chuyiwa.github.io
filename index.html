@@ -21,7 +21,7 @@
          var name = document.getElementById('name').value;
           if(name === '')return console.log("名字为空");
            
-          ws = new WebSocket('ws://localhost:8000');
+          ws = new WebSocket('ws://182.234.91.156:5432');
            
           //在建立连接时会触发
            ws.onopen = function(){
