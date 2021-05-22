@@ -21,16 +21,16 @@
          var name = document.getElementById('name').value;
           if(name === '')return console.log("名字为空");
            
-          ws = new WebSocket('ws://182.234.91.156:5432');
+          ws = new WebSocket('ws://182.234.91.156:8080');
            
           //在建立连接时会触发
-           ws.onopen = ()=>
+           ws.onopen = function(){
             //向服务器发送消息
             ws.send(JSON.stringify({
                 name:name,
                 type:'setname'
             }));
-          
+          }
 
             document.getElementById('btn').onclick = send;
             document.getElementById('text').onkeyup = function(e) {
@@ -73,7 +73,7 @@
           function send() {
             var text=document.getElementById('text');
                 if(text.value === '')return;
-                ws.send(JSON.stringify({
+                ws.onopen =()=> ws.send(JSON.stringify({
                  text:text.value,
                  type:"chat"
             }));             

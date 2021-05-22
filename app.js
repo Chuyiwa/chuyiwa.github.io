@@ -35,7 +35,7 @@ var server=ws.createServer(function(conn){
     conn.on('error',function(err){
         console.log(err);
     })
- }).listen(8000); //listen方法设置端口号
+ }).listen(8080); //listen方法设置端口号
  
  //循环将消息广播更新给所有人
  function broadcast(str){
