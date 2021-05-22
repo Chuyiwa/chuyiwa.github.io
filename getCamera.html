@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Instascan</title>
+    <script type="text/javascript" src="instascan.min.js"></script>
+  </head>
+  <body>
+      <input type="button" title="开启摄像头" value="开启摄像头扫码" οnclick="getMedia()" />
+  <video id="video" width="50px" height="50px"></video>
+
+  
+  <script>
+        function getMedia() {
+
+     let scanner = new Instascan.Scanner({ video: document.getElementById('video') });
+      console.log(scanner);
+      scanner.addListener('scan', function (content) {
+        console.log('content:'+content);
+        alert('content:'+content);
+        scanner.stop().then(function () {/*alert('结束'); */});//关闭摄像头
+
+      });
+      Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+          //开始扫描
+            scanner.start(cameras[0]).then(function () { 
+          /*alert('开始');*/
+           }).catch(function (err) {
+             alert('err:'+err); 
+           });
+        } else {
+          console.error('扫描内容为空！');
+        }
+      }).catch(function (e) {
+        console.error(e);
+      });
+
+
+        }
+ 
+
+ 
+</script>
