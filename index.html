@@ -24,13 +24,13 @@
           ws = new WebSocket('ws://182.234.91.156:5432');
            
           //在建立连接时会触发
-           ws.onopen = function(){
+           ws.onopen = ()=>
             //向服务器发送消息
             ws.send(JSON.stringify({
                 name:name,
                 type:'setname'
             }));
-          }
+          
 
             document.getElementById('btn').onclick = send;
             document.getElementById('text').onkeyup = function(e) {
